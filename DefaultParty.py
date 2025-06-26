@@ -18,7 +18,7 @@ def createDefaultParty():
     party.rampe = Rampe()
 
     party.listVigile = [Vigile(), Vigile(), Vigile()]
-    party.listChaise = [Chaise(), Chaise(), Chaise(), Chaise(), Chaise()]
+    party.listChaise = [Chaise(), Chaise(), Chaise(), Chaise()]
     party.listDistributeur = [Distributeur()]
     party.listEnceinte = [Enceinte(), Enceinte()]
     party.listTente = [Tente(), Tente()]
