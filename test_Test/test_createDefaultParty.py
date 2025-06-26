@@ -14,7 +14,7 @@ from structure.Vigile import Vigile
 
 
 '''
-[Vigile(), Vigile(), Vigile(), Chaise(), Chaise(), Chaise(), Chaise(), Chaise(), Distributeur(),
+[Vigile(), Vigile(), Vigile(), Chaise(), Chaise(), Chaise(), Chaise(), Distributeur(),
                      Enceinte(), Enceinte(), Fontaine(), Rampe(), Scene(), Stand(), Stand(), Stand(), Tente(), Tente(),
                      Toilette(), Toilette()]
 '''
@@ -26,7 +26,7 @@ def test_createDefaultParty():
     expectedParty.scene = Scene()
     expectedParty.rampe = Rampe()
     expectedParty.listVigile = [Vigile(), Vigile(), Vigile()]
-    expectedParty.listChaise = [Chaise(), Chaise(), Chaise(), Chaise(), Chaise()]
+    expectedParty.listChaise = [Chaise(), Chaise(), Chaise(), Chaise()]
     expectedParty.listDistributeur = [Distributeur()]
     expectedParty.listEnceinte = [Enceinte(),Enceinte()]
     expectedParty.listTente = [Tente(), Tente()]
