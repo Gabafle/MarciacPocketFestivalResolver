@@ -1,5 +1,6 @@
 from DefaultParty import createDefaultParty
 from builder.changeChairs import changeChairs
+from checkParty import verificationParty
 from structure.Chaise import Chaise
 from structure.Distributeur import Distributeur
 from structure.Enceinte import Enceinte
@@ -31,7 +32,7 @@ def test_changeNumbersChairsWith5Chairs():
     actualParty = createDefaultParty()
 
     # Act
-    actualParty = changeChairs(5)
+    actualParty = changeChairs(5,actualParty)
 
     # Assert
     assert actualParty == expectedParty
@@ -43,7 +44,7 @@ def test_changeNumbersChairsNotAnNumber():
 
     # Act
     actualParty = createDefaultParty()
-    actualParty = changeChairs("fdeyghu")
+    actualParty = changeChairs("fdeyghu",actualParty)
 
     # Assert
     assert actualParty == expectedParty
@@ -55,7 +56,7 @@ def test_changeNumbersChairsCannotHaveInf4Chairs():
     expectedParty.listChaise = [Chaise(), Chaise(), Chaise(),Chaise()]
 
     #Act
-    actualParty = changeChairs(3)
+    actualParty = changeChairs(3,actualParty)
 
     #Assert
     assert actualParty == expectedParty
@@ -68,7 +69,21 @@ def test_changeNumbersChairsCannotHaveSup6Chairs():
     expectedParty.listChaise = [Chaise(), Chaise(), Chaise(),Chaise(),Chaise(),Chaise()]
 
     #Act
-    actualParty = changeChairs(7)
+    actualParty = changeChairs(7,actualParty)
 
     #Assert
     assert actualParty == expectedParty
+
+def test_changeNumbersChairsTheSecondParamIsNOtAParty():
+    # Arrange
+    expectedParty = createDefaultParty()
+    expectedOutput = False
+    falseParty = "this is an impostor"
+
+    # Act
+    actualOutput= verificationParty(falseParty)
+    falseParty = changeChairs(2,falseParty)
+
+    # Assert
+    assert actualOutput == expectedOutput
+    assert falseParty == expectedParty
