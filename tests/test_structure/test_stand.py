@@ -1,4 +1,4 @@
-from structure.Stand import Stand
+from backend.structure.Stand import Stand
 
 
 

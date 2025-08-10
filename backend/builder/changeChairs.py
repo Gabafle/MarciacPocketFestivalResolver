@@ -1,16 +1,16 @@
-from DefaultParty import createDefaultParty
-from structure.Chaise import Chaise
+from backend.DefaultParty import createDefaultParty
+from backend.checkParty import verificationParty
+from backend.structure.Chaise import Chaise
 
-
-def changeChairs(numberschairs):
-    newParty = createDefaultParty()
-
+def changeChairs(numberschairs, party):
+    if verificationParty(party) == False:
+        return createDefaultParty()
     if (type(numberschairs) != int):
         print("numberschairs is not an int")
     else:
-        newParty.listChaise = createListChairs(numberschairs)
+        party.listChaise = createListChairs(numberschairs)
 
-    return newParty
+    return party
 
 
 def createListChairs(numberschairs):

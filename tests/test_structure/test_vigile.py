@@ -1,4 +1,4 @@
-from structure.Vigile import Vigile
+from backend.structure.Vigile import Vigile
 
 
 def testInitialisationVigileScore():

@@ -1,5 +1,5 @@
-from structure.Rampe import Rampe
-from structure.Scene import Scene
+from backend.structure.Rampe import Rampe
+from backend.structure.Scene import Scene
 
 
 class Party:

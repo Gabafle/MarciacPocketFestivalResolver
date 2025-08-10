@@ -1,4 +1,4 @@
-from structure.Fontaine import Fontaine
+from backend.structure.Fontaine import Fontaine
 
 
 def testInitialisationFontaineScore():

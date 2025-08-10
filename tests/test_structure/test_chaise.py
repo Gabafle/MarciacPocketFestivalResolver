@@ -1,27 +1,27 @@
-from structure.Rampe import Rampe
+from backend.structure.Chaise import Chaise
 
 
-def testInitialisationRampeScore():
+def testCreateChaiseObjectWithScore():
     # Arrange
     expectedValue = 50
-    rampe = Rampe();
+    chaise = Chaise()
 
     # Act
-    actualValue = rampe.score
+    actualValue = chaise.score
 
     # Assert
     assert actualValue == expectedValue
 
 
-def testCreateRampeWidthAndHeight():
+def testCreateChaiseWidthAndHeight():
     # Arrange
     expectedWidth = 1
     expectedHeight = 1
-    rampe = Rampe();
+    chaise = Chaise()
 
     # Act
-    actualWidth = rampe.width
-    actualHeight = rampe.height
+    actualWidth = chaise.width
+    actualHeight = chaise.height
 
     # Assert
     assert actualWidth == expectedWidth

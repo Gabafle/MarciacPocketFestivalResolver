@@ -1,4 +1,4 @@
-from structure.Enceinte import Enceinte
+from backend.structure.Enceinte import Enceinte
 
 
 def testInitialisationEnceinteScore():

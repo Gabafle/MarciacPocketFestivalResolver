@@ -1,4 +1,4 @@
-from structure.Scene import Scene
+from backend.structure.Scene import Scene
 
 
 def testInitialisationSceneScore():
