@@ -1,6 +1,6 @@
-from DefaultParty import createDefaultParty
-from checkParty import verificationParty
-from structure.Chaise import Chaise
+from backend.DefaultParty import createDefaultParty
+from backend.checkParty import verificationParty
+from backend.structure.Chaise import Chaise
 
 def changeChairs(numberschairs, party):
     if verificationParty(party) == False:

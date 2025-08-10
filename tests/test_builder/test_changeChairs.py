@@ -1,17 +1,17 @@
-from DefaultParty import createDefaultParty
-from builder.changeChairs import changeChairs
-from checkParty import verificationParty
-from structure.Chaise import Chaise
-from structure.Distributeur import Distributeur
-from structure.Enceinte import Enceinte
-from structure.Fontaine import Fontaine
-from structure.Party import Party
-from structure.Rampe import Rampe
-from structure.Scene import Scene
-from structure.Stand import Stand
-from structure.Tente import Tente
-from structure.Toilette import Toilette
-from structure.Vigile import Vigile
+from backend.DefaultParty import createDefaultParty
+from backend.builder.changeChairs import changeChairs
+from backend.checkParty import verificationParty
+from backend.structure.Chaise import Chaise
+from backend.structure.Distributeur import Distributeur
+from backend.structure.Enceinte import Enceinte
+from backend.structure.Fontaine import Fontaine
+from backend.structure.Party import Party
+from backend.structure.Rampe import Rampe
+from backend.structure.Scene import Scene
+from backend.structure.Stand import Stand
+from backend.structure.Tente import Tente
+from backend.structure.Toilette import Toilette
+from backend.structure.Vigile import Vigile
 
 
 def test_changeNumbersChairsWith5Chairs():

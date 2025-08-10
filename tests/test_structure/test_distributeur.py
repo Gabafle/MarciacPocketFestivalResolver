@@ -1,4 +1,4 @@
-from structure.Distributeur import Distributeur
+from backend.structure.Distributeur import Distributeur
 
 
 def testInitialisationDistributeurScore():

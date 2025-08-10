@@ -1,9 +1,9 @@
-from DefaultParty import createDefaultParty
-from builder.changeChairs import changeChairs
-from builder.changeDistributeur import changeDistributeur
-from checkParty import verificationParty
-from structure.Chaise import Chaise
-from structure.Distributeur import Distributeur
+from backend.DefaultParty import createDefaultParty
+from backend.builder.changeChairs import changeChairs
+from backend.builder.changeDistributeur import changeDistributeur
+from backend.checkParty import verificationParty
+from backend.structure.Chaise import Chaise
+from backend.structure.Distributeur import Distributeur
 
 
 def test_ChangeNumberOfDistributeur():

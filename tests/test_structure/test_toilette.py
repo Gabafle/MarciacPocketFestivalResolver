@@ -1,4 +1,4 @@
-from structure.Toilette import Toilette
+from backend.structure.Toilette import Toilette
 
 
 def testInitialisationToiletteScore():

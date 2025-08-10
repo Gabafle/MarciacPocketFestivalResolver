@@ -1,6 +1,6 @@
-from DefaultParty import createDefaultParty
-from checkParty import verificationParty
-from structure.Distributeur import Distributeur
+from backend.DefaultParty import createDefaultParty
+from backend.checkParty import verificationParty
+from backend.structure.Distributeur import Distributeur
 
 
 def changeDistributeur(numberDistributeur,party):

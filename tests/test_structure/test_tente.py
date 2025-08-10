@@ -1,4 +1,4 @@
-from structure.Tente import Tente
+from backend.structure.Tente import Tente
 
 
 def testInitialisationTenteScore():

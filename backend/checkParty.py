@@ -1,4 +1,4 @@
-from structure.Party import Party
+from backend.structure.Party import Party
 
 def verificationParty(party):
     if (type(party) != Party):
