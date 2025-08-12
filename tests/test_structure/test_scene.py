@@ -1,28 +1,36 @@
+import unittest
+
+from backend.structure.Element import Element
 from backend.structure.Scene import Scene
 
+class SceneTest(unittest.TestCase):
+    def testInitialisationSceneScore(self):
+        # Arrange
+        expectedValue = 100
+        scene = Scene()
 
-def testInitialisationSceneScore():
-    # Arrange
-    expectedValue = 100
-    scene = Scene();
+        # Act
+        actualValue = scene.score
 
-    # Act
-    actualValue = scene.score
-
-    # Assert
-    assert actualValue == expectedValue
+        # Assert
+        self.assertEqual( actualValue , expectedValue)
 
 
-def testCreateSceneWidthAndHeight():
-    # Arrange
-    expectedWidth = 4
-    expectedHeight = 3
-    scene = Scene();
+    def testCreateSceneWidthAndHeight(self):
+        # Arrange
+        expectedWidth = 4
+        expectedHeight = 3
+        scene = Scene()
 
-    # Act
-    actualWidth = scene.width
-    actualHeight = scene.height
+        # Act
+        actualWidth = scene.width
+        actualHeight = scene.height
 
-    # Assert
-    assert actualWidth == expectedWidth
-    assert actualHeight == expectedHeight
+        # Assert
+        self.assertEqual( actualWidth , expectedWidth)
+        self.assertEqual( actualHeight , expectedHeight)
+
+    def test_scene_sub_class_element(self):
+        # Given
+        # When/Then
+        self.assertTrue(issubclass(Scene, Element))

@@ -11,19 +11,12 @@ from backend.structure.Toilette import Toilette
 from backend.structure.Vigile import Vigile
 
 
-def createDefaultParty():
-    party = Party()
-
-    party.Scene = Scene()
-    party.rampe = Rampe()
-
-    party.listVigile = [Vigile(), Vigile(), Vigile()]
-    party.listChaise = [Chaise(), Chaise(), Chaise(), Chaise()]
-    party.listDistributeur = [Distributeur()]
-    party.listEnceinte = [Enceinte(), Enceinte()]
-    party.listTente = [Tente(), Tente()]
-    party.listToilette = [Toilette(), Toilette()]
-    party.listFontaine = [Fontaine()]
-    party.listStand = [Stand(), Stand(), Stand()]
-
-    return party
+class DefaultParty:
+    
+    @staticmethod
+    def create():
+        party = Party()
+        party.elements = [Vigile(), Vigile(), Vigile(), Chaise(), Chaise(), Chaise(), Chaise(), Scene(), Rampe(),
+                          Distributeur(), Enceinte(), Enceinte(), Tente(), Tente(), Toilette(), Toilette(), Fontaine(),
+                          Stand(), Stand(), Stand()]
+        return party

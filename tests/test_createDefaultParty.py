@@ -1,9 +1,10 @@
-from backend.DefaultParty import createDefaultParty
+import unittest
+
+from backend.DefaultParty import DefaultParty
 from backend.structure.Chaise import Chaise
 from backend.structure.Distributeur import Distributeur
 from backend.structure.Enceinte import Enceinte
 from backend.structure.Fontaine import Fontaine
-from backend.structure.Party import Party
 from backend.structure.Rampe import Rampe
 from backend.structure.Scene import Scene
 from backend.structure.Stand import Stand
@@ -11,31 +12,22 @@ from backend.structure.Tente import Tente
 from backend.structure.Toilette import Toilette
 from backend.structure.Vigile import Vigile
 
-
-
 '''
 [Vigile(), Vigile(), Vigile(), Chaise(), Chaise(), Chaise(), Chaise(), Distributeur(),
                      Enceinte(), Enceinte(), Fontaine(), Rampe(), Scene(), Stand(), Stand(), Stand(), Tente(), Tente(),
                      Toilette(), Toilette()]
 '''
 
-def test_createDefaultParty():
-    # Arrange
-    expectedParty = Party()
 
-    expectedParty.scene = Scene()
-    expectedParty.rampe = Rampe()
-    expectedParty.listVigile = [Vigile(), Vigile(), Vigile()]
-    expectedParty.listChaise = [Chaise(), Chaise(), Chaise(), Chaise()]
-    expectedParty.listDistributeur = [Distributeur()]
-    expectedParty.listEnceinte = [Enceinte(),Enceinte()]
-    expectedParty.listTente = [Tente(), Tente()]
-    expectedParty.listToilette = [Toilette(), Toilette()]
-    expectedParty.listFontaine = [Fontaine()]
-    expectedParty.listStand = [Stand(), Stand(), Stand()]
+class TestCreateDefaultParty(unittest.TestCase):
+    def testCreateDefaultParty(self):
+        # Arrange
+        expectedParty = [Vigile(), Vigile(), Vigile(), Chaise(), Chaise(), Chaise(), Chaise(), Scene(), Rampe(),
+                         Distributeur(), Enceinte(), Enceinte(), Tente(), Tente(), Toilette(), Toilette(), Fontaine(),
+                         Stand(), Stand(), Stand()]
 
-    # Act
-    actualParty = createDefaultParty()
+        # Act
+        actualParty = DefaultParty.create()
 
-    # Assert
-    assert actualParty == expectedParty
+        # Assert
+        self.assertEqual(actualParty.elements, expectedParty)
