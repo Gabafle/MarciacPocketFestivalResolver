@@ -1,28 +1,37 @@
+import unittest
+
+from backend.structure.Element import Element
 from backend.structure.Toilette import Toilette
 
+class TestToilette(unittest.TestCase):
 
-def testInitialisationToiletteScore():
-    # Arrange
-    expectedValue = 100
-    toilette = Toilette();
+    def testInitialisationToiletteScore(self):
+        # Arrange
+        expectedValue = 100
+        toilette = Toilette();
 
-    # Act
-    actualValue = toilette.score
+        # Act
+        actualValue = toilette.score
 
-    # Assert
-    assert actualValue == expectedValue
+        # Assert
+        self.assertEqual( actualValue , expectedValue)
 
 
-def testCreateToiletteWidthAndHeight():
-    # Arrange
-    expectedWidth = 2
-    expectedHeight = 2
-    toilette = Toilette();
+    def testCreateToiletteWidthAndHeight(self):
+        # Arrange
+        expectedWidth = 2
+        expectedHeight = 2
+        toilette = Toilette();
 
-    # Act
-    actualWidth = toilette.width
-    actualHeight = toilette.height
+        # Act
+        actualWidth = toilette.width
+        actualHeight = toilette.height
 
-    # Assert
-    assert actualWidth == expectedWidth
-    assert actualHeight == expectedHeight
+        # Assert
+        self.assertEqual( actualWidth , expectedWidth)
+        self.assertEqual( actualHeight , expectedHeight)
+
+    def test_toilette_sub_class_element(self):
+        # Given
+        # When/Then
+        self.assertTrue(issubclass(Toilette, Element))

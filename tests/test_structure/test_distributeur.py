@@ -1,28 +1,38 @@
+import unittest
+
 from backend.structure.Distributeur import Distributeur
+from backend.structure.Element import Element
 
 
-def testInitialisationDistributeurScore():
-    # Arrange
-    expectedValue = 50
-    distributeur = Distributeur();
+class DistributeurTest(unittest.TestCase):
+    def testInitialisationDistributeurScore(self):
+        # Arrange
+        expectedValue = 50
+        distributeur = Distributeur()
 
-    # Act
-    actualValue = distributeur.score
+        # Act
+        actualValue = distributeur.score
 
-    # Assert
-    assert actualValue == expectedValue
+        # Assert
+        self.assertEqual( actualValue , expectedValue)
 
 
-def testCreateDistributeurWidthAndHeight():
-    # Arrange
-    expectedWidth = 1
-    expectedHeight = 1
-    distributeur = Distributeur();
+    def testCreateDistributeurWidthAndHeight(self):
+        # Arrange
+        expectedWidth = 1
+        expectedHeight = 1
+        distributeur = Distributeur()
 
-    # Act
-    actualWidth = distributeur.width
-    actualHeight = distributeur.height
+        # Act
+        actualWidth = distributeur.width
+        actualHeight = distributeur.height
 
-    # Assert
-    assert actualWidth == expectedWidth
-    assert actualHeight == expectedHeight
+        # Assert
+        self.assertEqual( actualWidth , expectedWidth)
+        self.assertEqual( actualHeight , expectedHeight)
+
+    def test_distributeur_sub_class_element(self):
+        # Given
+        # When/Then
+        self.assertTrue(issubclass(Distributeur, Element))
+
