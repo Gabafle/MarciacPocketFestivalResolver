@@ -1,28 +1,36 @@
+import unittest
+
+from backend.structure.Element import Element
 from backend.structure.Vigile import Vigile
 
 
-def testInitialisationVigileScore():
-    # Arrange
-    expectedValue = 100
-    vigile = Vigile();
+class VigileTest(unittest.TestCase):
+    def testInitialisationVigileScore(self):
+        # Arrange
+        expectedValue = 100
+        vigile = Vigile()
 
-    # Act
-    actualValue =vigile.score
+        # Act
+        actualValue = vigile.score
 
-    # Assert
-    assert actualValue == expectedValue
+        # Assert
+        self.assertEqual(actualValue, expectedValue)
 
+    def testCreateVigileWidthAndHeight(self):
+        # Arrange
+        expectedWidth = 1
+        expectedHeight = 1
+        vigile = Vigile()
 
-def testCreateVigileWidthAndHeight():
-    # Arrange
-    expectedWidth = 1
-    expectedHeight = 1
-    vigile = Vigile();
+        # Act
+        actualWidth = vigile.width
+        actualHeight = vigile.height
 
-    # Act
-    actualWidth = vigile.width
-    actualHeight = vigile.height
+        # Assert
+        self.assertEqual(actualWidth, expectedWidth)
+        self.assertEqual(actualHeight, expectedHeight)
 
-    # Assert
-    assert actualWidth == expectedWidth
-    assert actualHeight == expectedHeight
+    def test_vigile_sub_class_element(self):
+        # Given
+        # When/Then
+        self.assertTrue(issubclass(Vigile, Element))

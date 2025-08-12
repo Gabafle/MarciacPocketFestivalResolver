@@ -1,29 +1,38 @@
+import unittest
+
+from backend.structure.Element import Element
 from backend.structure.Stand import Stand
 
 
+class StandTest(unittest.TestCase):
 
-def testInitialisationStandScore():
-    # Arrange
-    expectedValue = 100
-    stand = Stand();
+    def testInitialisationStandScore(self):
+        # Arrange
+        expectedValue = 100
+        stand = Stand()
 
-    # Act
-    actualValue = stand.score
+        # Act
+        actualValue = stand.score
 
-    # Assert
-    assert actualValue == expectedValue
+        # Assert
+        self.assertEqual( actualValue , expectedValue)
 
 
-def testCreateStandWidthAndHeight():
-    # Arrange
-    expectedWidth = 2
-    expectedHeight = 2
-    stand = Stand();
+    def testCreateStandWidthAndHeight(self):
+        # Arrange
+        expectedWidth = 2
+        expectedHeight = 2
+        stand = Stand()
 
-    # Act
-    actualWidth = stand.width
-    actualHeight = stand.height
+        # Act
+        actualWidth = stand.width
+        actualHeight = stand.height
 
-    # Assert
-    assert actualWidth == expectedWidth
-    assert actualHeight == expectedHeight
+        # Assert
+        self.assertEqual( actualWidth , expectedWidth)
+        self.assertEqual( actualHeight , expectedHeight)
+
+    def test_stand_sub_class_element(self):
+        # Given
+        # When/Then
+        self.assertTrue(issubclass(Stand, Element))

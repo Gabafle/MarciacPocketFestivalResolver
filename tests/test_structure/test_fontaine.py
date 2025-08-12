@@ -1,28 +1,36 @@
+import unittest
+
+from backend.structure.Element import Element
 from backend.structure.Fontaine import Fontaine
 
+class TestFontaine(unittest.TestCase):
+    def testInitialisationFontaineScore(self):
+        # Arrange
+        expectedValue = 50
+        fontaine = Fontaine()
 
-def testInitialisationFontaineScore():
-    # Arrange
-    expectedValue = 50
-    fontaine = Fontaine();
+        # Act
+        actualValue = fontaine.score
 
-    # Act
-    actualValue = fontaine.score
-
-    # Assert
-    assert actualValue == expectedValue
+        # Assert
+        self.assertEqual( actualValue , expectedValue)
 
 
-def testCreateFontaineWidthAndHeight():
-    # Arrange
-    expectedWidth = 1
-    expectedHeight = 1
-    fontaine = Fontaine();
+    def testCreateFontaineWidthAndHeight(self):
+        # Arrange
+        expectedWidth = 1
+        expectedHeight = 1
+        fontaine = Fontaine()
 
-    # Act
-    actualWidth = fontaine.width
-    actualHeight = fontaine.height
+        # Act
+        actualWidth = fontaine.width
+        actualHeight = fontaine.height
 
-    # Assert
-    assert actualWidth == expectedWidth
-    assert actualHeight == expectedHeight
+        # Assert
+        self.assertEqual( actualWidth , expectedWidth)
+        self.assertEqual( actualHeight , expectedHeight)
+
+    def test_fontaine_sub_class_element(self):
+        # Given
+        # When/Then
+        self.assertTrue(issubclass(Fontaine, Element))

@@ -1,28 +1,37 @@
+import unittest
+
+from backend.structure.Element import Element
 from backend.structure.Rampe import Rampe
 
+class TestRampe(unittest.TestCase):
 
-def testInitialisationRampeScore():
-    # Arrange
-    expectedValue = 50
-    rampe = Rampe();
+    def testInitialisationRampeScore(self):
+        # Arrange
+        expectedValue = 50
+        rampe = Rampe()
 
-    # Act
-    actualValue = rampe.score
+        # Act
+        actualValue = rampe.score
 
-    # Assert
-    assert actualValue == expectedValue
+        # Assert
+        self.assertEqual( actualValue , expectedValue)
 
 
-def testCreateRampeWidthAndHeight():
-    # Arrange
-    expectedWidth = 1
-    expectedHeight = 1
-    rampe = Rampe();
+    def testCreateRampeWidthAndHeight(self):
+        # Arrange
+        expectedWidth = 1
+        expectedHeight = 1
+        rampe = Rampe()
 
-    # Act
-    actualWidth = rampe.width
-    actualHeight = rampe.height
+        # Act
+        actualWidth = rampe.width
+        actualHeight = rampe.height
 
-    # Assert
-    assert actualWidth == expectedWidth
-    assert actualHeight == expectedHeight
+        # Assert
+        self.assertEqual( actualWidth , expectedWidth)
+        self.assertEqual( actualHeight ,expectedHeight)
+
+    def test_rampe_sub_class_element(self):
+        # Given
+        # When/Then
+        self.assertTrue(issubclass(Rampe, Element))
