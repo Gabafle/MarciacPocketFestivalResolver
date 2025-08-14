@@ -23,10 +23,13 @@ jobs:
 
       - name: Check Python
         run: python --version
-        
 
-      - name: Install linters
-        run: conda install -n mariac_pocket_env pip install ruff black pytest
+      - name: Install ruff
+        run: conda install -n mariac_pocket_env install ruff
+
+      - name: Install Black
+        run: conda install -n mariac_pocket_env install black
+
 
       - name: Check code formatting (black)
         run: conda run -n mariac_pocket_env black --check .
