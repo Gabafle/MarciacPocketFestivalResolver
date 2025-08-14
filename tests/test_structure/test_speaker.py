@@ -3,6 +3,7 @@ import unittest
 from backend.structure.Element import Element
 from backend.structure.Speaker import Speaker
 
+
 class TestSpeaker(unittest.TestCase):
     def test_InitialisationSpeakerScore(self):
         # Arrange
@@ -13,8 +14,7 @@ class TestSpeaker(unittest.TestCase):
         actual_value = speaker.score
 
         # Assert
-        self.assertEqual(actual_value,  expected_value)
-
+        self.assertEqual(actual_value, expected_value)
 
     def test_CreateSpeakerWidthAndHeight(self):
         # Arrange
@@ -34,4 +34,3 @@ class TestSpeaker(unittest.TestCase):
         # Given
         # When/Then
         self.assertTrue(issubclass(Speaker, Element))
-

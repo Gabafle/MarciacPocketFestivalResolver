@@ -16,7 +16,6 @@ class TestVendingMachine(unittest.TestCase):
         # Assert
         self.assertEqual(actual_value, expected_value)
 
-
     def test_CreateDistributeurWidthAndHeight(self):
         # Arrange
         expected_width = 1
@@ -35,4 +34,3 @@ class TestVendingMachine(unittest.TestCase):
         # Given
         # When/Then
         self.assertTrue(issubclass(Vending_machine, Element))
-

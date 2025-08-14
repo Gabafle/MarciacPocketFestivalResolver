@@ -3,6 +3,7 @@ import unittest
 from backend.structure.Element import Element
 from backend.structure.Toilet import Toilet
 
+
 class TestToilet(unittest.TestCase):
 
     def test_InitialisationToiletteScore(self):
@@ -15,7 +16,6 @@ class TestToilet(unittest.TestCase):
 
         # Assert
         self.assertEqual(actual_value, expected_value)
-
 
     def test_CreateToiletteWidthAndHeight(self):
         # Arrange

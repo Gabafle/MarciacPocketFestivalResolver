@@ -11,8 +11,10 @@ class Vending_machine(Element):
     def __eq__(self, other):
         if not isinstance(other, Vending_machine):
             return NotImplemented
-        return (self.score == other.score and
-                self.width == other.width and
-                self.height == other.height and
-                self.max == other.max and
-                self.min == other.min)
+        return (
+            self.score == other.score
+            and self.width == other.width
+            and self.height == other.height
+            and self.max == other.max
+            and self.min == other.min
+        )

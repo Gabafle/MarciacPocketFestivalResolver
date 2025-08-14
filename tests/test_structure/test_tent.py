@@ -3,6 +3,7 @@ import unittest
 from backend.structure.Element import Element
 from backend.structure.Tent import Tent
 
+
 class TestTent(unittest.TestCase):
     def test_InitialisationTentScore(self):
         # Arrange
@@ -14,7 +15,6 @@ class TestTent(unittest.TestCase):
 
         # Assert
         assert actual_value == expected_value
-
 
     def test_CreateTentWidthAndHeight(self):
         # Arrange

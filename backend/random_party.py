@@ -19,14 +19,22 @@ class RandomParty:
         elements_constraints = {
             "bodyguard": (Bodyguard(), Bodyguard().min, Bodyguard().max),
             "chair": (Chair(), Chair().min, Chair().max),
-            "vending_machine": (Vending_machine(), Vending_machine().min, Vending_machine().max),
+            "vending_machine": (
+                Vending_machine(),
+                Vending_machine().min,
+                Vending_machine().max,
+            ),
             "speaker": (Speaker(), Speaker().min, Speaker().max),
-            "water_fountain": (Water_fountain(), Water_fountain().min, Water_fountain().max),
+            "water_fountain": (
+                Water_fountain(),
+                Water_fountain().min,
+                Water_fountain().max,
+            ),
             "ramp": (Ramp(), Ramp().min, Ramp().max),
             "scene": (Scene(), Scene().min, Scene().max),
             "stand": (Stand(), Stand().min, Stand().max),
             "tent": (Tent(), Tent().min, Tent().max),
-            "toilet": (Toilet(), Toilet().min, Toilet().max)
+            "toilet": (Toilet(), Toilet().min, Toilet().max),
         }
 
         elements = []

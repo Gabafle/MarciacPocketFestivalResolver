@@ -12,19 +12,38 @@ from backend.structure.Tent import Tent
 from backend.structure.Toilet import Toilet
 from backend.structure.Bodyguard import Bodyguard
 
-'''
+"""
 [Bodyguard(), Bodyguard(), Bodyguard(), Chaise(), Chaise(), Chaise(), Chaise(), Vending_machine(),
                      Speaker(), Speaker(), Water_fountain(), Ramp(), Scene(), Stand(), Stand(), Stand(), Tent(), Tent(),
                      Toilet(), Toilet()]
-'''
+"""
 
 
 class TestCreateDefaultParty(unittest.TestCase):
     def test_CreateDefaultParty(self):
         # Arrange
-        expected_party = [Bodyguard(), Bodyguard(), Bodyguard(), Chair(), Chair(), Chair(), Chair(), Scene(), Ramp(),
-                         Vending_machine(), Speaker(), Speaker(), Tent(), Tent(), Toilet(), Toilet(), Water_fountain(),
-                         Stand(), Stand(), Stand()]
+        expected_party = [
+            Bodyguard(),
+            Bodyguard(),
+            Bodyguard(),
+            Chair(),
+            Chair(),
+            Chair(),
+            Chair(),
+            Scene(),
+            Ramp(),
+            Vending_machine(),
+            Speaker(),
+            Speaker(),
+            Tent(),
+            Tent(),
+            Toilet(),
+            Toilet(),
+            Water_fountain(),
+            Stand(),
+            Stand(),
+            Stand(),
+        ]
 
         # Act
         actual_party = DefaultParty.create()

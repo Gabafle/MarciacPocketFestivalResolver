@@ -17,7 +17,26 @@ class DefaultParty:
     def create():
         party = Party()
 
-        party.elements = [Bodyguard(), Bodyguard(), Bodyguard(), Chair(), Chair(), Chair(), Chair(), Scene(), Ramp(),
-                          Vending_machine(), Speaker(), Speaker(), Tent(), Tent(), Toilet(), Toilet(), Water_fountain(),
-                          Stand(), Stand(), Stand()]
+        party.elements = [
+            Bodyguard(),
+            Bodyguard(),
+            Bodyguard(),
+            Chair(),
+            Chair(),
+            Chair(),
+            Chair(),
+            Scene(),
+            Ramp(),
+            Vending_machine(),
+            Speaker(),
+            Speaker(),
+            Tent(),
+            Tent(),
+            Toilet(),
+            Toilet(),
+            Water_fountain(),
+            Stand(),
+            Stand(),
+            Stand(),
+        ]
         return party

@@ -13,7 +13,6 @@ class TestElement(unittest.TestCase):
         cls.max = 1
         cls.min = 1
 
-
     def test_create_element(self):
 
         # When

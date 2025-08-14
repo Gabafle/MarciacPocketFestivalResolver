@@ -17,7 +17,6 @@ class TestChair(unittest.TestCase):
         # Assert
         self.assertEqual(actual_value, expected_value)
 
-
     def test_CreateChairWidthAndHeight(self):
         # Arrange
         expected_width = 1
@@ -32,11 +31,8 @@ class TestChair(unittest.TestCase):
         self.assertEqual(actual_width, expected_width)
         self.assertEqual(actual_height, expected_height)
 
-
     def test_ChairCubClassElement(self):
-        #Given
+        # Given
 
-        #When/Then
+        # When/Then
         self.assertTrue(issubclass(Chair, Element))
-
-

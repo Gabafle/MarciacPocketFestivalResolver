@@ -3,7 +3,7 @@ from backend.structure.Party import Party
 
 def test_CreateEmptyParty():
     # Arrange
-    party_expected =[]
+    party_expected = []
 
     # Act
     party_actual = Party()

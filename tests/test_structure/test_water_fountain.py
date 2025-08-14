@@ -3,6 +3,7 @@ import unittest
 from backend.structure.Element import Element
 from backend.structure.Water_fountain import Water_fountain
 
+
 class TestFountain(unittest.TestCase):
     def test_InitialisationFountainScore(self):
         # Arrange
@@ -14,7 +15,6 @@ class TestFountain(unittest.TestCase):
 
         # Assert
         self.assertEqual(actual_value, expected_value)
-
 
     def test_CreateFontaineWidthAndHeight(self):
         # Arrange
