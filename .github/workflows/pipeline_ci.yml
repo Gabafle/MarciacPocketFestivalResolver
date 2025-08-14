@@ -25,10 +25,10 @@ jobs:
         run: python --version
 
       - name: Install ruff
-        run: conda install -n mariac_pocket_env install ruff
+        run: conda install -n mariac_pocket_env ruff
 
       - name: Install Black
-        run: conda install -n mariac_pocket_env install black
+        run: conda install -n mariac_pocket_env black
 
 
       - name: Check code formatting (black)
