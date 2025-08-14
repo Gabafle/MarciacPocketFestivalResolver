@@ -3,7 +3,7 @@ import unittest
 from backend.structure.Element import Element
 
 
-class TestElements(unittest.TestCase):
+class TestElement(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
@@ -14,6 +14,7 @@ class TestElements(unittest.TestCase):
         cls.min = 1
 
     def test_create_element(self):
+
         # When
         actual_value = Element(self.score, self.width, self.height, self.max, self.min)
 

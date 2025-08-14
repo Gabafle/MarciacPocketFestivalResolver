@@ -1,33 +1,54 @@
-from backend.structure.Chaise import Chaise
-from backend.structure.Distributeur import Distributeur
-from backend.structure.Enceinte import Enceinte
-from backend.structure.Fontaine import Fontaine
+import random
+
+from backend.structure.Chair import Chair
+from backend.structure.Vending_machine import Vending_machine
+from backend.structure.Speaker import Speaker
+from backend.structure.Water_fountain import Water_fountain
 from backend.structure.Party import Party
-from backend.structure.Rampe import Rampe
+from backend.structure.Ramp import Ramp
 from backend.structure.Scene import Scene
 from backend.structure.Stand import Stand
-from backend.structure.Tente import Tente
-from backend.structure.Toilette import Toilette
-from backend.structure.Vigile import Vigile
+from backend.structure.Tent import Tent
+from backend.structure.Toilet import Toilet
+from backend.structure.Bodyguard import Bodyguard
 
 
 class RandomParty:
-    def generate(self):
+    def generate(self, max_elements=20):
 
         elements_constraints = {
-            "bodyguard": (Vigile(), Vigile().min, Vigile().max),
-            "chair": (Chaise(), Chaise().min, Chaise().max),
-            "vending_machine": (Distributeur(), Distributeur().min, Distributeur().max),
-            "speaker": (Enceinte(), Enceinte().min, Enceinte().max),
-            "water_fountain": (Fontaine(), Fontaine().min, Fontaine().mac),
-            "ramp": (Rampe(), Rampe().min, Rampe().max),
+            "bodyguard": (Bodyguard(), Bodyguard().min, Bodyguard().max),
+            "chair": (Chair(), Chair().min, Chair().max),
+            "vending_machine": (
+                Vending_machine(),
+                Vending_machine().min,
+                Vending_machine().max,
+            ),
+            "speaker": (Speaker(), Speaker().min, Speaker().max),
+            "water_fountain": (
+                Water_fountain(),
+                Water_fountain().min,
+                Water_fountain().max,
+            ),
+            "ramp": (Ramp(), Ramp().min, Ramp().max),
             "scene": (Scene(), Scene().min, Scene().max),
             "stand": (Stand(), Stand().min, Stand().max),
-            "tent": (Tente(), Tente().min, Tente().max),
-            "toilet": (Toilette(), Toilette().min, Toilette().max)
+            "tent": (Tent(), Tent().min, Tent().max),
+            "toilet": (Toilet(), Toilet().min, Toilet().max),
         }
 
         elements = []
-        for name, (element, min_nb, _) in elements_constraints.items():
+        for _, (element, min_nb, _) in elements_constraints.items():
             elements.extend([element] * min_nb)
+
+        remaining = max_elements - len(elements)
+
+        possible_elements = []
+        for _, (element, min_nb, max_nb) in elements_constraints.items():
+            available_slots = max_nb - min_nb
+            if available_slots > 0:
+                possible_elements.extend([element] * available_slots)
+
+        elements.extend(random.sample(possible_elements, remaining))
+
         return Party(elements)
