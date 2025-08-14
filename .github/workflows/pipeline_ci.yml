@@ -1,0 +1,39 @@
+name: CI_pipelines
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Récupérer le code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Installer Miniconda
+      - name: Set up Miniconda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          auto-update-conda: true
+          python-version: 3.11
+          environment-file: environment_developement.yml
+          activate-environment: mariac_pocket_env # Nom de l'env défini dans environment.yml
+        
+      # 3. Installer ruff & black (si pas dans environment.yml)
+      - name: Install linters
+        run: conda run -n mariac_pocket_env pip install ruff black pytest
+
+      # 4. Vérification du formatage avec black
+      - name: Check code formatting (black)
+        run: conda run -n mariac_pocket_env black --check .
+
+      # 5. Analyse statique avec ruff
+      - name: Lint with ruff
+        run: conda run -n mariac_pocket_env ruff 
+
+      # 6. Lancer les tests avec pytest
+      - name: Run tests
+        run: conda run -n mariac_pocket_env pytest  ./tests
