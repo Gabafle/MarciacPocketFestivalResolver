@@ -30,7 +30,6 @@ jobs:
       - name: Install Black
         run: conda install -n mariac_pocket_env black
 
-
       - name: Check code formatting (black)
         run: conda run -n mariac_pocket_env black --check .
 
