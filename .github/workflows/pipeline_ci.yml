@@ -19,16 +19,20 @@ jobs:
           python-version: 3.11
           environment-file: environment_developement.yml
           activate-environment: mariac_pocket_env
+          use-mamba: true
+
+      - name: Check Python
+        run: python --version
         
 
       - name: Install linters
-        run: conda run -n mariac_pocket_env pip install ruff black pytest
+        run: conda install -n mariac_pocket_env pip install ruff black pytest
 
       - name: Check code formatting (black)
         run: conda run -n mariac_pocket_env black --check .
 
       - name: Lint with ruff
-        run: conda run -n mariac_pocket_env ruff 
+        run: conda run -n mariac_pocket_env ruff check . --fix
 
       - name: Run tests
-        run: conda run -n mariac_pocket_env pytest tests/
+        run: conda run -n mariac_pocket_env python -m pytest tests/
