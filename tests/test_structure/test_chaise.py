@@ -17,7 +17,6 @@ class ChaiseTest(unittest.TestCase):
         # Assert
         self.assertEqual(actualValue, expectedValue)
 
-
     def testCreateChaiseWidthAndHeight(self):
         # Arrange
         expectedWidth = 1
@@ -29,14 +28,11 @@ class ChaiseTest(unittest.TestCase):
         actualHeight = chaise.height
 
         # Assert
-        self.assertEqual( actualWidth  ,expectedWidth)
-        self.assertEqual( actualHeight  ,expectedHeight)
-
+        self.assertEqual(actualWidth, expectedWidth)
+        self.assertEqual(actualHeight, expectedHeight)
 
     def test_chaise_sub_class_element(self):
-        #Given
+        # Given
 
-        #When/Then
+        # When/Then
         self.assertTrue(issubclass(Chaise, Element))
-
-

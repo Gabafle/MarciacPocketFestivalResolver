@@ -12,19 +12,38 @@ from backend.structure.Tente import Tente
 from backend.structure.Toilette import Toilette
 from backend.structure.Vigile import Vigile
 
-'''
+"""
 [Vigile(), Vigile(), Vigile(), Chaise(), Chaise(), Chaise(), Chaise(), Distributeur(),
                      Enceinte(), Enceinte(), Fontaine(), Rampe(), Scene(), Stand(), Stand(), Stand(), Tente(), Tente(),
                      Toilette(), Toilette()]
-'''
+"""
 
 
 class TestCreateDefaultParty(unittest.TestCase):
     def testCreateDefaultParty(self):
         # Arrange
-        expectedParty = [Vigile(), Vigile(), Vigile(), Chaise(), Chaise(), Chaise(), Chaise(), Scene(), Rampe(),
-                         Distributeur(), Enceinte(), Enceinte(), Tente(), Tente(), Toilette(), Toilette(), Fontaine(),
-                         Stand(), Stand(), Stand()]
+        expectedParty = [
+            Vigile(),
+            Vigile(),
+            Vigile(),
+            Chaise(),
+            Chaise(),
+            Chaise(),
+            Chaise(),
+            Scene(),
+            Rampe(),
+            Distributeur(),
+            Enceinte(),
+            Enceinte(),
+            Tente(),
+            Tente(),
+            Toilette(),
+            Toilette(),
+            Fontaine(),
+            Stand(),
+            Stand(),
+            Stand(),
+        ]
 
         # Act
         actualParty = DefaultParty.create()

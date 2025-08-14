@@ -3,6 +3,7 @@ import unittest
 from backend.structure.Element import Element
 from backend.structure.Enceinte import Enceinte
 
+
 class TestEnceinte(unittest.TestCase):
     def testInitialisationEnceinteScore(self):
         # Arrange
@@ -13,8 +14,7 @@ class TestEnceinte(unittest.TestCase):
         actualValue = enceinte.score
 
         # Assert
-        self.assertEqual( actualValue,  expectedValue)
-
+        self.assertEqual(actualValue, expectedValue)
 
     def testCreateEnceinteWidthAndHeight(self):
         # Arrange
@@ -27,11 +27,10 @@ class TestEnceinte(unittest.TestCase):
         actualHeight = enceinte.height
 
         # Assert
-        self.assertEqual( actualWidth , expectedWidth)
-        self.assertEqual( actualHeight , expectedHeight)
+        self.assertEqual(actualWidth, expectedWidth)
+        self.assertEqual(actualHeight, expectedHeight)
 
     def test_enceinte_sub_class_element(self):
         # Given
         # When/Then
         self.assertTrue(issubclass(Enceinte, Element))
-

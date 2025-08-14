@@ -15,8 +15,7 @@ class StandTest(unittest.TestCase):
         actualValue = stand.score
 
         # Assert
-        self.assertEqual( actualValue , expectedValue)
-
+        self.assertEqual(actualValue, expectedValue)
 
     def testCreateStandWidthAndHeight(self):
         # Arrange
@@ -29,8 +28,8 @@ class StandTest(unittest.TestCase):
         actualHeight = stand.height
 
         # Assert
-        self.assertEqual( actualWidth , expectedWidth)
-        self.assertEqual( actualHeight , expectedHeight)
+        self.assertEqual(actualWidth, expectedWidth)
+        self.assertEqual(actualHeight, expectedHeight)
 
     def test_stand_sub_class_element(self):
         # Given

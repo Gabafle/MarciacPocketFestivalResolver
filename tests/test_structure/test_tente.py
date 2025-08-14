@@ -3,6 +3,7 @@ import unittest
 from backend.structure.Element import Element
 from backend.structure.Tente import Tente
 
+
 class TestTente(unittest.TestCase):
     def testInitialisationTenteScore(self):
         # Arrange
@@ -15,7 +16,6 @@ class TestTente(unittest.TestCase):
         # Assert
         assert actualValue == expectedValue
 
-
     def testCreateTenteWidthAndHeight(self):
         # Arrange
         expectedWidth = 3
@@ -27,8 +27,8 @@ class TestTente(unittest.TestCase):
         actualHeight = tente.height
 
         # Assert
-        self.assertEqual( actualWidth , expectedWidth)
-        self.assertEqual( actualHeight , expectedHeight)
+        self.assertEqual(actualWidth, expectedWidth)
+        self.assertEqual(actualHeight, expectedHeight)
 
     def test_tente_sub_class_element(self):
         # Given

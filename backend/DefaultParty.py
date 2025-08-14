@@ -12,11 +12,30 @@ from backend.structure.Vigile import Vigile
 
 
 class DefaultParty:
-    
+
     @staticmethod
     def create():
         party = Party()
-        party.elements = [Vigile(), Vigile(), Vigile(), Chaise(), Chaise(), Chaise(), Chaise(), Scene(), Rampe(),
-                          Distributeur(), Enceinte(), Enceinte(), Tente(), Tente(), Toilette(), Toilette(), Fontaine(),
-                          Stand(), Stand(), Stand()]
+        party.elements = [
+            Vigile(),
+            Vigile(),
+            Vigile(),
+            Chaise(),
+            Chaise(),
+            Chaise(),
+            Chaise(),
+            Scene(),
+            Rampe(),
+            Distributeur(),
+            Enceinte(),
+            Enceinte(),
+            Tente(),
+            Tente(),
+            Toilette(),
+            Toilette(),
+            Fontaine(),
+            Stand(),
+            Stand(),
+            Stand(),
+        ]
         return party

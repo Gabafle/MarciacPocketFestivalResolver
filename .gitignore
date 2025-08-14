@@ -5,3 +5,5 @@ __pycache__/
 *.pyd
 
 .idea/
+.coverage
+bd_coverage/
