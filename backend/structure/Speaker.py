@@ -11,6 +11,7 @@ class Speaker(Element):
     def __eq__(self, other):
         if not isinstance(other, Speaker):
             return NotImplemented
+
         return (self.score == other.score and
                 self.width == other.width and
                 self.height == other.height and

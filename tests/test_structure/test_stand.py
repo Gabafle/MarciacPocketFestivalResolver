@@ -17,7 +17,6 @@ class TestStand(unittest.TestCase):
         # Assert
         self.assertEqual(actual_value, expected_value)
 
-
     def test_CreateStandWidthAndHeight(self):
         # Arrange
         expected_width = 2

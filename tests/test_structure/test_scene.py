@@ -3,8 +3,10 @@ import unittest
 from backend.structure.Element import Element
 from backend.structure.Scene import Scene
 
+
 class TestScene(unittest.TestCase):
     def test_InitialisationSceneScore(self):
+
         # Arrange
         expected_value = 100
         scene = Scene()
@@ -14,7 +16,6 @@ class TestScene(unittest.TestCase):
 
         # Assert
         self.assertEqual(actual_value, expected_value)
-
 
     def test_CreateSceneWidthAndHeight(self):
         # Arrange

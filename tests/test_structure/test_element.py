@@ -14,7 +14,8 @@ class TestElement(unittest.TestCase):
         cls.min = 1
 
 
-    def test_CreateElement(self):
+    def test_create_element(self):
+
         # When
         actual_value = Element(self.score, self.width, self.height, self.max, self.min)
 
