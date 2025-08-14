@@ -1,28 +1,28 @@
 import unittest
 
 from backend.random_party import RandomParty
-from backend.structure.Chaise import Chaise
-from backend.structure.Distributeur import Distributeur
-from backend.structure.Enceinte import Enceinte
-from backend.structure.Fontaine import Fontaine
+from backend.structure.Chair import Chair
+from backend.structure.Vending_machine import Vending_machine
+from backend.structure.Speaker import Speaker
+from backend.structure.Water_fountain import Water_fountain
 from backend.structure.Party import Party
-from backend.structure.Rampe import Rampe
+from backend.structure.Ramp import Ramp
 from backend.structure.Scene import Scene
 from backend.structure.Stand import Stand
-from backend.structure.Tente import Tente
-from backend.structure.Toilette import Toilette
-from backend.structure.Vigile import Vigile
+from backend.structure.Tent import Tent
+from backend.structure.Toilet import Toilet
+from backend.structure.Bodyguard import Bodyguard
 
 
 class TestRandomPartyGenerator(unittest.TestCase):
-    def test_return_party(self):
+    def test_ReturnParty(self):
         # when
         actual_value = RandomParty.generate(self)
 
         # then
         self.assertIsInstance(actual_value, Party)
 
-    def test_min_elements(self):
+    def test_MinElements(self):
         # given
         min_bodyguard = 2
         min_chair = 4
@@ -36,18 +36,18 @@ class TestRandomPartyGenerator(unittest.TestCase):
         min_toilet = 1
 
         # when
-        actual_value = RandomParty.generate(self)
+        actual_value = RandomParty.generate(self).elements
 
-        nb_bodyguard = actual_value.elements.count(Vigile())
-        nb_chair = actual_value.elements.count(Chaise())
-        nb_vending_machine = actual_value.elements.count(Distributeur())
-        nb_speaker = actual_value.elements.count(Enceinte())
-        nb_water_fountain = actual_value.elements.count(Fontaine())
-        nb_ramp = actual_value.elements.count(Rampe())
-        nb_scene = actual_value.elements.count(Scene())
-        nb_stand = actual_value.elements.count(Stand())
-        nb_tent = actual_value.elements.count(Tente())
-        nb_toilet = actual_value.elements.count(Toilette())
+        nb_bodyguard = actual_value.count(Bodyguard())
+        nb_chair = actual_value.count(Chair())
+        nb_vending_machine = actual_value.count(Vending_machine())
+        nb_speaker = actual_value.count(Speaker())
+        nb_water_fountain = actual_value.count(Water_fountain())
+        nb_ramp = actual_value.count(Ramp())
+        nb_scene = actual_value.count(Scene())
+        nb_stand = actual_value.count(Stand())
+        nb_tent = actual_value.count(Tent())
+        nb_toilet = actual_value.count(Toilet())
 
         # then
         self.assertGreaterEqual(nb_bodyguard, min_bodyguard)
@@ -60,3 +60,13 @@ class TestRandomPartyGenerator(unittest.TestCase):
         self.assertGreaterEqual(nb_stand, min_stand)
         self.assertGreaterEqual(nb_tent, min_tent)
         self.assertGreaterEqual(nb_toilet, min_toilet)
+
+    def test_Remaining(self):
+        # given
+        expected_elements_length = 20
+
+        # when
+        actual_elements_length = len(RandomParty.generate(self).elements)
+
+        # then
+        self.assertEqual(expected_elements_length, actual_elements_length)

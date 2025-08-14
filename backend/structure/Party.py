@@ -1,4 +1,4 @@
-from backend.structure.Rampe import Rampe
+from backend.structure.Ramp import Ramp
 from backend.structure.Scene import Scene
 
 

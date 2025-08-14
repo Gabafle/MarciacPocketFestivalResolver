@@ -1,14 +1,12 @@
 from backend.structure.Party import Party
-from backend.structure.Rampe import Rampe
-from backend.structure.Scene import Scene
 
 
 def test_CreateEmptyParty():
     # Arrange
-    partyExpected =[]
+    party_expected =[]
 
     # Act
-    partyActual = Party()
+    party_actual = Party()
 
     # Assert
-    assert partyActual.elements == partyExpected
+    assert party_actual.elements == party_expected

@@ -1,38 +1,37 @@
 import unittest
 
 from backend.structure.Element import Element
-from backend.structure.Stand import Stand
+from backend.structure.Toilet import Toilet
 
+class TestToilet(unittest.TestCase):
 
-class TestStand(unittest.TestCase):
-
-    def test_InitialisationStandScore(self):
+    def test_InitialisationToiletteScore(self):
         # Arrange
         expected_value = 100
-        stand = Stand()
+        toilet = Toilet()
 
         # Act
-        actual_value = stand.score
+        actual_value = toilet.score
 
         # Assert
         self.assertEqual(actual_value, expected_value)
 
 
-    def test_CreateStandWidthAndHeight(self):
+    def test_CreateToiletteWidthAndHeight(self):
         # Arrange
         expected_width = 2
         expected_height = 2
-        stand = Stand()
+        toilet = Toilet()
 
         # Act
-        actual_width = stand.width
-        actual_height = stand.height
+        actual_width = toilet.width
+        actual_height = toilet.height
 
         # Assert
         self.assertEqual(actual_width, expected_width)
         self.assertEqual(actual_height, expected_height)
 
-    def test_StandSubClassElement(self):
+    def test_ToiletSubClassElement(self):
         # Given
         # When/Then
-        self.assertTrue(issubclass(Stand, Element))
+        self.assertTrue(issubclass(Toilet, Element))
