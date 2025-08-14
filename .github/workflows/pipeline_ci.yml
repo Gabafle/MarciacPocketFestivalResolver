@@ -1,0 +1,40 @@
+name: CI_pipelines
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Miniconda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          auto-update-conda: true
+          python-version: 3.13.5
+          environment-file: environment_developement.yml
+          activate-environment: mariac_pocket_env
+          use-mamba: true
+
+      - name: Check Python
+        run: python --version
+
+      - name: Install ruff
+        run: conda install -n mariac_pocket_env ruff
+
+      - name: Install Black
+        run: conda install -n mariac_pocket_env black
+
+      - name: Check code formatting (black)
+        run: conda run -n mariac_pocket_env black --check .
+
+      - name: Lint with ruff
+        run: conda run -n mariac_pocket_env ruff check . --fix
+
+      - name: Run tests
+        run: conda run -n mariac_pocket_env python -m pytest tests/

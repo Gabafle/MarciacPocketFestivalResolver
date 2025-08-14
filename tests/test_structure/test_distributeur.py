@@ -14,8 +14,7 @@ class DistributeurTest(unittest.TestCase):
         actualValue = distributeur.score
 
         # Assert
-        self.assertEqual( actualValue , expectedValue)
-
+        self.assertEqual(actualValue, expectedValue)
 
     def testCreateDistributeurWidthAndHeight(self):
         # Arrange
@@ -28,11 +27,10 @@ class DistributeurTest(unittest.TestCase):
         actualHeight = distributeur.height
 
         # Assert
-        self.assertEqual( actualWidth , expectedWidth)
-        self.assertEqual( actualHeight , expectedHeight)
+        self.assertEqual(actualWidth, expectedWidth)
+        self.assertEqual(actualHeight, expectedHeight)
 
     def test_distributeur_sub_class_element(self):
         # Given
         # When/Then
         self.assertTrue(issubclass(Distributeur, Element))
-

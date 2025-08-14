@@ -3,6 +3,7 @@ import unittest
 from backend.structure.Element import Element
 from backend.structure.Rampe import Rampe
 
+
 class TestRampe(unittest.TestCase):
 
     def testInitialisationRampeScore(self):
@@ -14,8 +15,7 @@ class TestRampe(unittest.TestCase):
         actualValue = rampe.score
 
         # Assert
-        self.assertEqual( actualValue , expectedValue)
-
+        self.assertEqual(actualValue, expectedValue)
 
     def testCreateRampeWidthAndHeight(self):
         # Arrange
@@ -28,8 +28,8 @@ class TestRampe(unittest.TestCase):
         actualHeight = rampe.height
 
         # Assert
-        self.assertEqual( actualWidth , expectedWidth)
-        self.assertEqual( actualHeight ,expectedHeight)
+        self.assertEqual(actualWidth, expectedWidth)
+        self.assertEqual(actualHeight, expectedHeight)
 
     def test_rampe_sub_class_element(self):
         # Given

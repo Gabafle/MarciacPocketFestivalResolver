@@ -1,7 +1,6 @@
 import unittest
 
 from backend.structure.Element import Element
-from backend.structure.Party import Party
 
 
 class TestElements(unittest.TestCase):
@@ -13,7 +12,6 @@ class TestElements(unittest.TestCase):
         cls.height = 1
         cls.max = 1
         cls.min = 1
-
 
     def test_create_element(self):
         # When
