@@ -16,7 +16,7 @@ jobs:
         uses: conda-incubator/setup-miniconda@v3
         with:
           auto-update-conda: true
-          python-version: 3.11
+          python-version: 3.13.5
           environment-file: environment_developement.yml
           activate-environment: mariac_pocket_env
           use-mamba: true
