@@ -1,8 +1,8 @@
 from copy import deepcopy
 
 from backend.DefaultParty import DefaultParty
-from backend.structure.Party import Party
 from backend.buildeur.Services import Services
+from backend.structure.Party import Party
 
 
 class BuildeurParty(Party):

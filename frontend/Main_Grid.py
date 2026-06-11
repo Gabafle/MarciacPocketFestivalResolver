@@ -1,9 +1,21 @@
 import pygame
 from backend.DefaultParty import DefaultParty
+from backend.buildeur.BuildeurParty import BuildeurParty
 from backend.scoring.ScoreEngine import ScoreEngine
+from backend.structure.Bodyguard import Bodyguard
+from backend.structure.Chair import Chair
+from backend.structure.Speaker import Speaker
+from backend.structure.Stand import Stand
+from backend.structure.Tent import Tent
+from backend.structure.Toilet import Toilet
+from backend.structure.Vending_machine import Vending_machine
+from backend.structure.Water_fountain import Water_fountain
 from frontend.Button import Button
 from frontend.Grid import Grid
 from frontend.ScorePanel import ScorePanel
+import pygame as _pg
+
+from frontend.Cell import CellState as CS
 
 # Palette
 BLUE = (52, 120, 219)
@@ -35,6 +47,87 @@ def draw_placement_preview(screen, grid, element, mx, my, offset_x, offset_y):
             offset_y + cell.row * grid.cell_size,
         ),
     )
+
+
+def make_element_buttons(btn_x, base_y, btn_panel_w, elements):
+    buttons = []
+    sorted_elements = sorted(elements, key=lambda element: type(element).__name__)
+    for i, element in enumerate(sorted_elements):
+        label = f"{type(element).__name__}  {element.width}×{element.height}  [{element.score}pts]"
+        buttons.append(Button(btn_x, base_y + i * 42, btn_panel_w, 38, label, BLUE))
+    return buttons
+
+
+def clamp(value, lower, upper):
+    return max(lower, min(upper, value))
+
+
+def draw_builder_panel(
+    screen,
+    score_x,
+    builder_panel_y,
+    builder_panel_w,
+    builder_counts,
+    builder_total,
+    builder_list_count,
+    validation_message,
+    validation_color,
+    font_hint,
+):
+    panel_rect = pygame.Rect(score_x, builder_panel_y, builder_panel_w, 240)
+    pygame.draw.rect(screen, (18, 22, 33), panel_rect, border_radius=10)
+    pygame.draw.rect(screen, (80, 90, 110), panel_rect, 2, border_radius=10)
+
+    title = font_hint.render(
+        "Party Builder : ajustez les éléments puis validez", True, (255, 230, 120)
+    )
+    screen.blit(title, (panel_rect.x + 12, panel_rect.y + 12))
+
+    info = font_hint.render(
+        f"Total sélectionné au builder : {builder_total} / 20", True, (180, 220, 255)
+    )
+    screen.blit(info, (panel_rect.x + 12, panel_rect.y + 34))
+
+    info_current = font_hint.render(
+        f"Liste actuelle : {builder_list_count} éléments", True, (180, 220, 255)
+    )
+    screen.blit(info_current, (panel_rect.x + 12, panel_rect.y + 54))
+
+    row_y = panel_rect.y + 80
+    row_height = 20
+    for name, count in builder_counts.items():
+        label = font_hint.render(f"{name}", True, (220, 220, 220))
+        screen.blit(label, (panel_rect.x + 12, row_y))
+        count_surf = font_hint.render(str(count), True, (255, 255, 255))
+        screen.blit(count_surf, (panel_rect.x + 172, row_y))
+        row_y += row_height
+
+    if validation_message:
+        status_surf = font_hint.render(validation_message, True, validation_color)
+        screen.blit(status_surf, (panel_rect.x + 12, panel_rect.y + 210))
+
+    return panel_rect
+
+
+def get_builder_entry_types():
+    return [
+        ("Bodyguard", Bodyguard, "changeBodyguard"),
+        ("Chair", Chair, "changeChair"),
+        ("Speaker", Speaker, "changeSpeaker"),
+        ("Stand", Stand, "changeStand"),
+        ("Tent", Tent, "changeTent"),
+        ("Toilet", Toilet, "changeToilet"),
+        ("Vending_machine", Vending_machine, "changeVendingMachine"),
+        ("Water_fountain", Water_fountain, "changeWaterFontain"),
+    ]
+
+
+def update_builder_counts(builder_counts, name, delta):
+    for label, cls, _ in get_builder_entry_types():
+        if label == name:
+            current = builder_counts[name]
+            builder_counts[name] = clamp(current + delta, cls().min, cls().max)
+            return
 
 
 def main():
@@ -72,10 +165,9 @@ def main():
     grid_pixel_w = cols * cell_size
     grid_pixel_h = rows * cell_size
 
-    # Layout : grille à gauche | boutons au centre | score à droite
     btn_panel_w = 320
     score_panel_w = 300
-    margin = 20
+    margin = 5
 
     total_w = (
         GRID_OFFSET_X
@@ -86,33 +178,61 @@ def main():
         + score_panel_w
         + margin
     )
-    total_h = GRID_OFFSET_Y + grid_pixel_h + 250
+    builder_panel_h = 300
+    total_h = GRID_OFFSET_Y + grid_pixel_h + builder_panel_h + margin
     screen = pygame.display.set_mode((total_w, total_h))
     pygame.display.set_caption("Party Planner – Grid System")
 
-    # Grille
     grid = Grid(rows, cols, cell_size)
     for cell in blocked_cells:
         grid.cells[cell[0]][cell[1]].block_cell()
 
-    # Surface dédiée à la grille (pour gérer l'offset proprement)
     grid_surface = pygame.Surface((grid_pixel_w, grid_pixel_h))
 
-    # Éléments
     party = DefaultParty().create()
+    party.elements = sorted(party.elements, key=lambda element: type(element).__name__)
 
-    # Boutons
+    # Boutons de sélection des éléments disponibles
     btn_x = GRID_OFFSET_X + grid_pixel_w + margin
-    buttons = []
-    for i, element in enumerate(party.elements):
-        label = f"{type(element).__name__}  {element.width}×{element.height}  [{element.score}pts]"
-        buttons.append(
-            Button(btn_x, GRID_OFFSET_Y + i * 42, btn_panel_w, 38, label, BLUE)
-        )
+    buttons = make_element_buttons(btn_x, GRID_OFFSET_Y, btn_panel_w, party.elements)
 
     # Score
     score_x = btn_x + btn_panel_w + margin
-    score_panel = ScorePanel(score_x, GRID_OFFSET_Y, score_panel_w, grid_pixel_h)
+    score_panel = ScorePanel(score_x, GRID_OFFSET_Y, score_panel_w, grid_pixel_h - 300)
+
+    builder_panel_y = GRID_OFFSET_Y - 200 + grid_pixel_h + 20 + margin
+    builder_counts = {
+        label: party.elements.count(cls())
+        for label, cls, _ in get_builder_entry_types()
+    }
+    fixed_elements = 2
+    builder_total = sum(builder_counts.values()) + fixed_elements
+    builder_list_count = len(party.elements)
+    builder_buttons = []
+    button_width = 16
+    button_height = 15
+    control_x = score_x + 12
+    plus_x = score_x + 220
+    row_y = builder_panel_y + 60
+    row_height = 20
+    for label, cls, _ in get_builder_entry_types():
+        minus_button = Button(
+            control_x + 190, row_y + 15, button_width, button_height, "-", BLUE
+        )
+        plus_button = Button(plus_x, row_y + 15, button_width, button_height, "+", BLUE)
+        builder_buttons.append((minus_button, label, -1))
+        builder_buttons.append((plus_button, label, +1))
+        row_y += row_height
+    validate_button = Button(
+        score_x + 12,
+        builder_panel_y + 280,
+        score_panel_w - 24,
+        44,
+        "VALIDER LA LISTE",
+        BLUE,
+    )
+    validation_message = ""
+    validation_color = (255, 90, 90)
     engine = ScoreEngine(grid)
 
     selected_element = None
@@ -122,7 +242,6 @@ def main():
 
     while running:
         mx, my = pygame.mouse.get_pos()
-        # Coordonnées relatives à la grille
         gx, gy = mx - GRID_OFFSET_X, my - GRID_OFFSET_Y
 
         for event in pygame.event.get():
@@ -134,11 +253,56 @@ def main():
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 clicked_button = False
-                for i, button in enumerate(buttons):
+                for button, name, delta in builder_buttons:
                     if button.rect.collidepoint(mx, my):
-                        selected_element = party.elements[i]
+                        update_builder_counts(builder_counts, name, delta)
+                        builder_total = sum(builder_counts.values()) + fixed_elements
+                        validation_message = ""
                         clicked_button = True
                         break
+
+                if not clicked_button and validate_button.rect.collidepoint(mx, my):
+                    builder_total = sum(builder_counts.values()) + fixed_elements
+                    if builder_total != 20:
+                        validation_message = f"Erreur : {builder_total} éléments au total, il faut exactement 20 éléments (Scene+Ramp fixes)."
+                        validation_color = (255, 90, 90)
+                    else:
+                        builder = BuildeurParty(DefaultParty().create())
+
+                        for label, _, method_name in get_builder_entry_types():
+                            getattr(builder, method_name)(builder_counts[label])
+
+                        party = builder.build()
+
+                        # Réinitialisation du plateau
+                        grid = Grid(rows, cols, cell_size)
+
+                        for cell in blocked_cells:
+                            grid.cells[cell[0]][cell[1]].block_cell()
+
+                        engine = ScoreEngine(grid)
+
+                        party.elements = sorted(
+                            party.elements, key=lambda element: type(element).__name__
+                        )
+
+                        buttons = make_element_buttons(
+                            btn_x, GRID_OFFSET_Y + 10, btn_panel_w, party.elements
+                        )
+
+                        selected_element = None
+                        builder_list_count = len(party.elements)
+
+                        validation_message = "Liste validée et plateau réinitialisé."
+                        validation_color = (120, 230, 120)
+                    clicked_button = True
+
+                if not clicked_button:
+                    for i, button in enumerate(buttons):
+                        if button.rect.collidepoint(mx, my):
+                            selected_element = party.elements[i]
+                            clicked_button = True
+                            break
 
                 if not clicked_button and selected_element:
                     cell = grid.get_cell_at_pos(gx, gy)
@@ -166,9 +330,6 @@ def main():
         for row in grid.cells:
             for cell in row:
                 # Dessiner sur grid_surface en recalculant la position
-                import pygame as _pg
-
-                from frontend.Cell import CellState as CS
 
                 if cell.state == CS.BLOCKED:
                     c = (80, 85, 100)
@@ -183,7 +344,6 @@ def main():
                     grid_surface, (55, 65, 90), (rx, ry, cell_size, cell_size), 1
                 )
 
-                # Nom de l'élément sur la cellule maître
                 if cell.state == CS.OCCUPIED and cell.is_top_left and cell.occupant:
                     ew = getattr(cell.occupant, "width", 1)
                     eh = getattr(cell.occupant, "height", 1)
@@ -215,6 +375,23 @@ def main():
 
         # Score panel
         score_panel.draw(screen)
+
+        # Builder panel
+        draw_builder_panel(
+            screen,
+            score_x,
+            builder_panel_y,
+            score_panel_w,
+            builder_counts,
+            builder_total,
+            builder_list_count,
+            validation_message,
+            validation_color,
+            font_hint,
+        )
+        for button, _, _ in builder_buttons:
+            button.draw(screen)
+        validate_button.draw(screen)
 
         # Hint bas de grille
         if selected_element:
